@@ -1,0 +1,53 @@
+<%- include("../partials/header") %>
+
+<div class="ui main text container segment">
+    <div class="ui huge header"> <%= blog.title %></div>
+      <div class="ui top attached segment">
+          <div class="item">
+               <img class="ui centered rounded image" src="<%=blog.image%>">
+          </div>
+      </div>
+ 
+       <div>
+               <span><%=blog.created.toDateString() %></span>
+               <p><%=blog.body%></p>
+       </div>
+               <form action="/blogs/<%=blog._id%>/edit" method="GET">
+	                 <button class="ui orange basic button tiny ui button">Edit</button>
+               </form>
+               <form id="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+	                 <button class="ui red basic button tiny ui button">Delete</button>
+               </form>
+
+               <div class="ui comments">
+                    <h3 class="ui dividing header">Comments</h3>
+                    <a  class="ui blue label" href="/blogs/<%=blog._id %>/comments/new">Add a New Comment</a>
+                    <div class="comment">
+         <%  blog.comments.forEach(function(comment) {%>
+                        <div class="content">
+                           <a class="author"><%= comment.author.username %></a>
+                           <div class="metadata">
+                               <span class="date"><%=comment.created.toDateString()%></span>
+                           </div>
+                           <div class="text">
+                                <%=  comment.text  %>
+                            </div>
+                        </div>
+                        <a class="ui orange label"  href="/blogs/<%=blog._id%>/comments/<%=comment._id%>/edit">Edit</a>
+                        
+                        <form  action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                <button class="mini ui red button" class="mini ui button"> Delete</button>
+                         </form>
+
+                           <% })%>
+                    </div>
+               
+            
+ 
+        </div>                  
+                   
+     
+               
+</div>
+
+<%- include("../partials/footer") %>

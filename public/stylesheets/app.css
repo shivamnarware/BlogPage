@@ -1,0 +1,18 @@
+i.icon {
+    font-size: 2em;
+}
+.container.main{
+    margin-top: 7.0em;
+}
+
+#delete {
+    display: inline;
+}
+
+
+p {font-size:0; /* Fixes inline block spacing */  }
+span { width:50%; display:inline-block; }
+span.align-right { text-align:right; }
+
+span a { font-size:16px; }
+
